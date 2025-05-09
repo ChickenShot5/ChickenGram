@@ -12,7 +12,7 @@ export default function ContactList() {
       alert("You must be logged in");
       navigate("/login");
     } else {
-      fetch("http://localhost:3001/api/contacts", {
+      fetch(`${process.env.REACT_APP_API_URL}/api/contacts`, {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())
@@ -24,7 +24,7 @@ export default function ContactList() {
   // Delete a contact by ID
   const deleteContact = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3001/api/contacts/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/contacts/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

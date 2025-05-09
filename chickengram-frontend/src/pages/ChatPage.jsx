@@ -9,7 +9,7 @@ export default function ChatPage() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/contacts", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/contacts`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -18,7 +18,7 @@ export default function ChatPage() {
 
   useEffect(() => {
     if (!selectedContact) return;
-    fetch(`http://localhost:3001/api/messages/${selectedContact.id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/messages/${selectedContact.id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -29,7 +29,7 @@ export default function ChatPage() {
     e.preventDefault();
     if (!newMessage.trim()) return;
 
-    fetch("http://localhost:3001/api/messages", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

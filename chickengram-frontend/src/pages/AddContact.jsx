@@ -10,7 +10,7 @@ export default function AddContact() {
     e.preventDefault();
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:3001/api/contacts", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/contacts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
