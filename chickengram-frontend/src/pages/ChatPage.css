@@ -41,8 +41,9 @@
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-  margin-bottom: 10px;
-  padding-right: 10px;
+  padding: 10px;
+  background-color: #fff4e9;
+  border: 1px solid #eee;
 }
 
 .chat-message {
@@ -61,13 +62,17 @@
 .bubble {
   max-width: 70%;
   padding: 8px 12px;
+  background-color: #eee;
   border-radius: 15px;
-  background-color: #e0f7ff;
-  font-size: 14px;
+  word-wrap: break-word;
 }
 
 .chat-message.them .bubble {
   background-color: #ddd;
+}
+
+.chat-message.me .bubble {
+  background-color: #cfefff;
 }
 
 .message-form {

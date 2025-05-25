@@ -19,9 +19,12 @@ export default function ChatPage() {
 
   useEffect(() => {
     if (!selectedContact) return;
-    fetch(`${process.env.REACT_APP_API_URL}/api/messages/${selectedContact.id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch(
+      `${process.env.REACT_APP_API_URL}/api/messages/${selectedContact.id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
       .then((res) => res.json())
       .then(setMessages);
   }, [selectedContact, token]);
@@ -61,7 +64,9 @@ export default function ChatPage() {
         {contacts.map((contact) => (
           <div
             key={contact.id}
-            className={`contact-item ${selectedContact?.id === contact.id ? "selected" : ""}`}
+            className={`contact-item ${
+              selectedContact?.id === contact.id ? "selected" : ""
+            }`}
             onClick={() => setSelectedContact(contact)}
           >
             {contact.username}
@@ -77,7 +82,9 @@ export default function ChatPage() {
               {messages.map((msg, i) => (
                 <div
                   key={i}
-                  className={`chat-message ${msg.sender_id === "me" ? "me" : "them"}`}
+                  className={`chat-message ${
+                    msg.sender_id === "me" ? "me" : "them"
+                  }`}
                 >
                   <div className="bubble">{msg.content}</div>
                 </div>
