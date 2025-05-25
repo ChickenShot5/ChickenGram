@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./ChatPage.css";
 
 export default function ChatPage() {
   const [contacts, setContacts] = useState([]);
@@ -54,27 +55,16 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="chat-container" style={{ display: "flex", height: "90vh" }}>
+    <div className="chat-container">
       {/* Contact List */}
-      <div
-        className="contact-list"
-        style={{
-          width: "200px",
-          borderRight: "1px solid #ccc",
-          padding: "10px",
-        }}
-      >
+      <div className="contact-list">
         <h3>Contacts</h3>
         {contacts.map((contact) => (
           <div
-            className="chat-window"
             key={contact.id}
-            style={{
-              cursor: "pointer",
-              padding: "5px",
-              backgroundColor:
-                selectedContact?.id === contact.id ? "#eee" : "transparent",
-            }}
+            className={`contact-item ${
+              selectedContact?.id === contact.id ? "selected" : ""
+            }`}
             onClick={() => setSelectedContact(contact)}
           >
             {contact.username}
@@ -83,55 +73,26 @@ export default function ChatPage() {
       </div>
 
       {/* Chat Window */}
-      <div className="chat-window"
-        style={{
-          flex: 1,
-          padding: "10px",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div className="chat-window">
         {selectedContact ? (
           <>
             <h3>Chat with {selectedContact.username}</h3>
-            <div
-              style={{
-                flex: 1,
-                overflowY: "auto",
-                border: "1px solid #ddd",
-                padding: "10px",
-              }}
-            >
+            <div className="chat-messages">
               {messages.map((msg, i) => (
                 <div
                   key={i}
-                  style={{
-                    textAlign: msg.sender_id === "me" ? "right" : "left",
-                    marginBottom: "10px",
-                  }}
+                  className={`chat-message ${msg.sender_id === "me" ? "me" : "them"}`}
                 >
-                  <div
-                    style={{
-                      display: "inline-block",
-                      padding: "5px 10px",
-                      backgroundColor: msg.sender_id === "me" ? "#cef" : "#eee",
-                      borderRadius: "10px",
-                    }}
-                  >
-                    {msg.content}
-                  </div>
+                  <div className="bubble">{msg.content}</div>
                 </div>
               ))}
             </div>
-            <form
-              onSubmit={sendMessage}
-              style={{ marginTop: "10px", display: "flex" }}
-            >
+
+            <form className="message-form" onSubmit={sendMessage}>
               <input
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
-                style={{ flex: 1 }}
                 placeholder="Type a message"
               />
               <button type="submit">Send</button>
