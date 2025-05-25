@@ -62,9 +62,7 @@ export default function ChatPage() {
         {contacts.map((contact) => (
           <div
             key={contact.id}
-            className={`contact-item ${
-              selectedContact?.id === contact.id ? "selected" : ""
-            }`}
+            className={`contact-item ${selectedContact?.id === contact.id ? "selected" : ""}`}
             onClick={() => setSelectedContact(contact)}
           >
             {contact.username}
@@ -78,14 +76,14 @@ export default function ChatPage() {
           <>
             <h3>Chat with {selectedContact.username}</h3>
             <div className="chat-messages">
-              {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`chat-message ${msg.sender_id === "me" ? "me" : "them"}`}
-                >
-                  <div className="bubble">{msg.content}</div>
-                </div>
-              ))}
+              {messages.map((msg, i) => {
+                const isMe = msg.sender_id === "me";
+                return (
+                  <div key={i} className={`chat-message ${isMe ? "me" : "them"}`}>
+                    <div className="bubble">{msg.content}</div>
+                  </div>
+                );
+              })}
             </div>
 
             <form className="message-form" onSubmit={sendMessage}>

@@ -1,80 +1,30 @@
-.chat-container {
+.chat-message.me {
   display: flex;
-  height: 90vh;
+  justify-content: flex-end;
 }
 
-.contact-list {
-  width: 200px;
-  border-right: 1px solid #ccc;
-  padding: 10px;
-}
-
-.chat-window {
-  flex: 1;
-  padding: 10px;
+.chat-message.them {
   display: flex;
-  flex-direction: column;
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-
-.chat-message {
-  margin-bottom: 10px;
+  justify-content: flex-start;
 }
 
 .chat-message .bubble {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 10px;
+  max-width: 70%;
+  padding: 8px 12px;
+  background-color: #eee;
+  border-radius: 15px;
+  margin: 4px;
+  font-size: 14px;
 }
 
 .chat-message.me .bubble {
-  background-color: #cef;
-  text-align: right;
+  background-color: #b3e5fc;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 0;
 }
 
 .chat-message.them .bubble {
-  background-color: #eee;
-  text-align: left;
-}
-
-.message-form {
-  display: flex;
-  margin-top: 10px;
-}
-
-.message-form input {
-  flex: 1;
-}
-
-@media (max-width: 768px) {
-  .chat-container {
-    flex-direction: column;
-  }
-
-  .contact-list {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #ccc;
-  }
-
-  .chat-window {
-    height: 100%;
-  }
-
-  .chat-messages {
-    height: 50vh;
-  }
-
-  .message-form {
-    position: sticky;
-    bottom: 0;
-    background: white;
-    padding-bottom: 10px;
-  }
+  background-color: #f1f0f0;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 0;
 }
